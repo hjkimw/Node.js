@@ -17,11 +17,12 @@ const BtnSet = styled.div`
 function Detail() {
   const navigate = useNavigate();
   const params = useParams();
-  const [Detail, setDetail] = useState(null);
+  const [Detail, setDetail] = useState({});
 
   const item = {
     num: params.num,
   };
+  console.log(item);
 
   const handleDelete = () => {
     if (!window.confirm("정말 삭제하겠습니다.")) return;
