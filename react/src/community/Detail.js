@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Layout from "../common/Layout";
 import styled from "styled-components";
@@ -15,6 +15,7 @@ const BtnSet = styled.div`
 `;
 
 function Detail() {
+  const navigate = useNavigate();
   const params = useParams();
   const [Detail, setDetail] = useState(null);
 
@@ -22,12 +23,27 @@ function Detail() {
     num: params.num,
   };
 
+  const handleDelete = () => {
+    if (!window.confirm("정말 삭제하겠습니다.")) return;
+
+    axios
+      .post("/api/community/delete", item)
+      .then((res) => {
+        if (res.data.success) {
+          alert("게시글이 삭제되었습니다.");
+          navigate("/list");
+        } else {
+          alert("게시글 삭제에 실패했습니다.");
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
   useEffect(() => {
     axios
       .post("/api/community/detail", item)
       .then((res) => {
         if (res.data.success) {
-          console.log(res.data.detail);
           setDetail(res.data.detail);
         }
       })
@@ -47,7 +63,7 @@ function Detail() {
             <button>
               <Link to={`/edit/${Detail.communityNum}`}>Edit</Link>
             </button>
-            <button>Delete</button>
+            <button onClick={handleDelete}>Delete</button>
           </BtnSet>
         </>
       )}
