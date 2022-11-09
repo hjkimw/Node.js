@@ -49,7 +49,8 @@ function List() {
                 <Link to={`/detail/${post.communityNum}`}>{post.title}</Link>
               </h2>
 
-              <span>Writer: {post.writer.displayName}</span>
+              <p>Writer: {post.writer.displayName}</p>
+              <p>Posted: {post.createdAt.split("T")[0]}</p>
             </Item>
           );
         })

@@ -1,14 +1,17 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const postSchema = new mongoose.Schema({
-  title: String,
-  content: String,
-  communityNum: Number,
-  writer: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  }
-}, { collection: 'Posts' });
+const postSchema = new mongoose.Schema(
+  {
+    title: String,
+    content: String,
+    communityNum: Number,
+    writer: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  },
+  { collection: "Posts", timestamps: true }
+);
 
-const Post = mongoose.model('Post', postSchema);
+const Post = mongoose.model("Post", postSchema);
 module.exports = { Post };
