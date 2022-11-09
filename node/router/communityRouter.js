@@ -39,8 +39,11 @@ router.post("/create", (req, res) => {
 
 //read
 router.get("/read", (req, res) => {
+  console.log(req.query);
+
   const sort = { createdAt: -1 };
   if (req.query.sort === "new") sort.createdAt = -1;
+  else sort.createdAt = 1;
 
   Post.find()
     .populate("writer")
