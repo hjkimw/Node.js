@@ -21,7 +21,7 @@ router.post("/create", (req, res) => {
           //해당 document의 object.id값을 bodyParser객체에 writer키값에 등록
           temp.writer = doc._id;
 
-          //위에서 만들어진 최종 temp객체로 PostModel인스턴스 생서후 DB에 저장
+          //위에서 만들어진 최종 temp객체로 PostModel인스턴스 생성후 DB에 저장
           const PostModel = new Post(temp);
 
           PostModel.save().then(() => {
