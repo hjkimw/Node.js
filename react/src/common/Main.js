@@ -98,7 +98,7 @@ function Main() {
 
     const item = { count: 3 };
     axios
-      .post("/api/community/read", item)
+      .get(`/api/community/read/?count=${item.count}`)
       .then((res) => res.data.success && setList(res.data.communityList))
       .catch((err) => console.log(err));
   }, []);

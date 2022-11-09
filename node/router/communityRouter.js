@@ -38,15 +38,14 @@ router.post("/create", (req, res) => {
 });
 
 //read
-router.post("/read", (req, res) => {
-  const sort = {};
-  if (req.body.sort === "new") sort.createdAt = -1;
-  else sort.createdAt = 1;
+router.get("/read", (req, res) => {
+  const sort = { createdAt: -1 };
+  if (req.query.sort === "new") sort.createdAt = -1;
 
   Post.find()
     .populate("writer")
     .sort(sort)
-    .limit(req.body.count)
+    .limit(req.query.count)
     .exec()
     .then((doc) => {
       res.json({ success: true, communityList: doc });
@@ -58,8 +57,8 @@ router.post("/read", (req, res) => {
 });
 
 //detail
-router.post("/detail", (req, res) => {
-  Post.findOne({ communityNum: req.body.num })
+router.get("/detail", (req, res) => {
+  Post.findOne({ communityNum: req.query.num })
     .populate("writer")
     .exec()
     .then((doc) => {
@@ -72,7 +71,7 @@ router.post("/detail", (req, res) => {
 });
 
 //edit
-router.post("/edit", (req, res) => {
+router.put("/edit", (req, res) => {
   const temp = {
     title: req.body.title,
     content: req.body.content,

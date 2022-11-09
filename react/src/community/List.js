@@ -27,7 +27,7 @@ function List() {
       sort: Sort,
     };
     axios
-      .post("/api/community/read", item)
+      .get(`/api/community/read/?sort=${item.sort}`)
       .then((res) => {
         if (res.data.success) {
           setList(res.data.communityList);
