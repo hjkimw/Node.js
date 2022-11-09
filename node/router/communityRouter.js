@@ -39,14 +39,14 @@ router.post("/create", (req, res) => {
 
 //read
 router.post("/read", (req, res) => {
-  const sort = {}; //빈 객체
-
-  if (req.body.sort === "new") sort.createdAt = -1; //req.body.sort가 'new'라면 sort 빈 객체에 createAt라는 속성값을 -1대입하여 동적으로 추가
-  else sort.createdAt = 1; // 그렇지 않다면 1을 대입하여 동적으로 추가
+  const sort = {};
+  if (req.body.sort === "new") sort.createdAt = -1;
+  else sort.createdAt = 1;
 
   Post.find()
     .populate("writer")
     .sort(sort)
+    .limit(req.body.count)
     .exec()
     .then((doc) => {
       res.json({ success: true, communityList: doc });
