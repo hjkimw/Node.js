@@ -96,9 +96,9 @@ function Main() {
       )
       .join("");
 
-    const item = { count: 3 };
+    const item = { count: 3, sort: "new" };
     axios
-      .get(`/api/community/read/?count=${item.count}`)
+      .get(`/api/community/read/?count=${item.count}&sort=${item.sort}`)
       .then((res) => res.data.success && setList(res.data.communityList))
       .catch((err) => console.log(err));
   }, []);
