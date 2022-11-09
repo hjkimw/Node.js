@@ -90,9 +90,8 @@ router.post("/edit", (req, res) => {
 });
 
 //delete
-router.post("/delete", (req, res) => {
-  console.log(req.body.num);
-  Post.deleteOne({ communityNum: req.body.num })
+router.delete("/delete/:num", (req, res) => {
+  Post.deleteOne({ communityNum: req.params.num })
     .exec()
     .then(() => {
       res.json({ success: true });
