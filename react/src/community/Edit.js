@@ -29,7 +29,7 @@ function Edit() {
     };
 
     axios
-      .put("/api/community/edit", item)
+      .put("/api/community/update", item)
       .then((res) => {
         if (res.data.success) {
           alert("글 수정이 완료되었습니다.");
