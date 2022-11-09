@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Layout from "../common/Layout";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import axios from "axios";
 
 const BtnSet = styled.div`
@@ -9,6 +10,7 @@ const BtnSet = styled.div`
 `;
 
 function Edit() {
+  const user = useSelector((store) => store.user);
   const navigate = useNavigate();
   const params = useParams();
   const [Detail, setDetail] = useState({});
@@ -40,6 +42,7 @@ function Edit() {
   };
 
   useEffect(() => {
+    user.uid === "" && navigate("/");
     const item = { num: params.num };
 
     axios

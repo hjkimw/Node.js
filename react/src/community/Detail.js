@@ -17,7 +17,6 @@ const BtnSet = styled.div`
 
 function Detail() {
   const user = useSelector((store) => store.user);
-  console.log(user);
   const navigate = useNavigate();
   const params = useParams();
   const [Detail, setDetail] = useState({});
@@ -56,7 +55,6 @@ function Detail() {
 
   useEffect(() => {
     Object.keys(Detail).length !== 0 && setLoaded(true);
-    console.log(Detail);
   }, [Detail]);
 
   return (
