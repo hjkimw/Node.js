@@ -66,8 +66,11 @@ function Detail() {
           <DetailWrap>
             <h2>{Detail.title}</h2>
             <p>{Detail.content}</p>
-            <p>Writer: {Detail.writer.displayName}</p>
-            <p>Posted: {Detail.createdAt.split("T")[0]}</p>
+            {Detail.createdAt === Detail.updatedAt ? (
+              <p>Posted: {Detail.createdAt.split("T")[0]}</p>
+            ) : (
+              <p>Updated: {Detail.updatedAt.split("T")[0]}</p>
+            )}
           </DetailWrap>
 
           {user.uid === Detail.writer.uid && (

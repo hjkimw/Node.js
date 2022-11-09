@@ -50,7 +50,11 @@ function List() {
               </h2>
 
               <p>Writer: {post.writer.displayName}</p>
-              <p>Posted: {post.createdAt.split("T")[0]}</p>
+              {post.createdAt === post.updatedAt ? (
+                <p>Posted: {post.createdAt.split("T")[0]}</p>
+              ) : (
+                <p>Updated: {post.updatedAt.split("T")[0]}</p>
+              )}
             </Item>
           );
         })
